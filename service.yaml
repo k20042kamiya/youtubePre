@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  # 指定したラベルにマッチする Pod に Service へのアクセスが割り振られる
+  type: NodePort
+  selector:
+    app: nginx

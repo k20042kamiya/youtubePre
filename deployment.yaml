@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+# 定義の種類
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  # 指定した条件に一致する Pod をこの Deployment が管理する (ここではlabelが一致すること)
+  selector:
+    matchLabels:
+      app: nginx
+  # レプリカ数: レプリカとは複数のことで、ここの数字分の Pod を常に起動させる
+  replicas: 3
+  # 作成する Pod の定義
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      # Pod で起動するコンテナの定義 (Docker hubから取ってくる image を記載する)
+      containers:
+        - name: nginx
+          image: nginx:1.7.9
+          ports:
+            - containerPort: 80

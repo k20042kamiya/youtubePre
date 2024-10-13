@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mysql:8.0.38
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - 13306:3306
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./.deveropment/my.conf:/etc/my.conf
+volumes:
+  mysql: {}
